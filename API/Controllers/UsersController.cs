@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController  //inherting from baseapicontroller
     {
         private readonly DataContext _context;
         public UsersController(DataContext context)
