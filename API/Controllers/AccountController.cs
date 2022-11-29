@@ -1,11 +1,11 @@
-using API.Data;
-using API.Entities;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using API.Data;
 using API.DTOs;
-using Microsoft.EntityFrameworkCore;
+using API.Entities;
 using API.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -46,7 +46,8 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+            var user = await _context.Users
+                .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null) return Unauthorized("Invalid username");
 
